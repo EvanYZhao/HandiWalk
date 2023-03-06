@@ -29,7 +29,7 @@ const Directions = () => {
       data={CrosswalkToYoungHall}
       renderItem={({ item }) => (
         <View style={styles.item}>
-          <Text style={{ paddingRight: 20, width: 200 }}>{item.direction}</Text>
+          <Text style={{ paddingRight: 20, width: 325 }}>{item.direction}</Text>
           <Ionicons name={item.icon} size={25} color="black" />
         </View>
       )}
