@@ -2,13 +2,20 @@ import Dodd from '../assets/Dodd_Hall-1.jpg';
 import Young from '../assets/Young_Hall-1.jpg';
 import logo from '../assets/tree.jpg';
 
-
+import { useFonts, PalanquinDark_400Regular } from '@expo-google-fonts/palanquin-dark';
 import { StyleSheet, Text, View, Button, FlatList, Image, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { PinchGestureHandler, State } from "react-native-gesture-handler"
 
 const Directions = ({ isYoung }) => {
+  let [fontsLoaded] = useFonts({
+    PalanquinDark_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   const CrosswalkToDodd = [
     { direction: 'Cross De Neve crosswalk and turn left', icon: 'return-up-back' },
@@ -49,7 +56,7 @@ const Directions = ({ isYoung }) => {
       data={(isYoung) ? CrosswalkToYoung : CrosswalkToDodd}
       renderItem={({ item }) => (
         <View style={styles.item}>
-          <Text style={{ paddingRight: 20, width: 325 }}>{item.direction}</Text>
+          <Text style={{ paddingRight: 20, width: 325, fontFamily: 'PalanquinDark_400Regular' }}>{item.direction}</Text>
           <Ionicons name={item.icon} size={25} color="black" />
         </View>
       )}
@@ -60,6 +67,15 @@ const Directions = ({ isYoung }) => {
 const { width } = Dimensions.get("window")
 
 const MapScreen = ({ navigation, route }) => {
+  let [fontsLoaded] = useFonts({
+    PalanquinDark_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+
   scale = new Animated.Value(1)
   onZoomEventFunction = Animated.event(
     [{
@@ -96,7 +112,7 @@ const MapScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center' }}>
-        <Image style={styles.logo} source={logo}/>
+        <Image style={styles.logo} source={logo} />
         <PinchGestureHandler
           onGestureEvent={this.onZoomEventFunction}
           onHandlerStateChange={this.onZoomStateChangeFunction}
@@ -111,7 +127,7 @@ const MapScreen = ({ navigation, route }) => {
         </PinchGestureHandler>
       </View>
       <StatusBar style="auto" />
-      <Text style={{ fontSize: 30 }}>ETA: {ETA}</Text>
+      <Text style={{ fontSize: 30, fontFamily: 'PalanquinDark_400Regular' }}>ETA: {ETA}</Text>
       <Directions isYoung={isYoung} />
     </View>
   );
@@ -138,8 +154,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 300,
-    height:100,
-    resizeMode: 'contain', 
+    height: 100,
+    resizeMode: 'contain',
   }
 });
 
