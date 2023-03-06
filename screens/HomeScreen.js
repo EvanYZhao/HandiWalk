@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import InputField from "../components/InputField";
-import { useState } from 'react'
+import { useState } from 'react';
+import logo from '../assets/tree.jpg';
+
 
 const HomeScreen = ({ navigation }) => {
   const [start, setStart] = useState(null)
   const [dest, setDest] = useState(null)
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 24, fontWeight: "bold" }}>HandiWalk</Text>
+      <Image style={styles.logo} source={logo}/>
       <Text style={{ fontSize: 18 }}>Where would you like to go today?</Text>
       <InputField label="Enter Your Starting Point" setLocation={setStart}/>
       <InputField label="Enter Your Destination" setLocation={setDest}/>
@@ -25,6 +27,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  logo: {
+    width: 300,
+    height:100,
+    resizeMode: 'contain', 
+  }
 });
 
 export default HomeScreen;
