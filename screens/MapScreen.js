@@ -1,7 +1,8 @@
 import Map from '../assets/Map.png';
-import { StyleSheet, Text, View, Button, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, Image, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
+import {PinchGestureHandler, State} from "react-native-gesture-handler"
 
 const Directions = () => {
   const CrosswalkToYoungHall = [
@@ -37,12 +38,42 @@ const Directions = () => {
   )
 }
 
+const {width} = Dimensions.get("window")
+
 const MapScreen = ({ navigation }) => {
+  scale=new Animated.Value(1)
+  onZoomEventFunction=Animated.event(
+    [{
+      nativeEvent: { scale: this.scale}
+    }],
+    {
+      useNativeDriver: true
+    }
+  )
+
+  OnZoomStateChangeFunction=(event) =>{
+    if(event.nativeEvent.oldState == State.ACTIVE) {
+      Animated.spring(this.scale,{
+        toValue: 1,
+        useNativeDriver: true
+      }).start()
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center' }}>
         <Text style={{ marginTop: 20, fontSize: 40 }}>HandiWalk</Text>
-        <Image style={styles.map_style} source={Map} />
+        <PinchGestureHandler
+        onGestureEvent={this.onZoomEventFunction}
+        onHandlerStateChange={this.onZoomStateChangeFunction}
+        >
+          <Animated.Image style={{ width: width,
+            height: 300, transform:[ { scale: this.scale}],
+            resizeMode: 'contain',
+            borderRadius: 18,}} 
+            source={Map} />
+          </PinchGestureHandler>
       </View>
       <StatusBar style="auto" />
       <Button
@@ -63,8 +94,8 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center'
   },
   map_style: {
-    width: 360,
-    height: 200,
+    width: 500,
+    height: 150,
     resizeMode: 'contain',
     borderRadius: 18,
   },
