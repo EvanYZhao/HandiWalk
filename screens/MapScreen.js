@@ -11,7 +11,7 @@ const Directions = () => {
     { direction: 'Near the Anderson School of Business, take the elevator near the stairs to the top', icon: 'arrow-up' },
     { direction: 'Exit the elevator and turn right', icon: 'return-up-forward' },
     { direction: 'Continue straight', icon: 'arrow-up' },
-    { direction: 'After passing Campbell Hall, turn left', icon: 'arrow-up-back' },
+    { direction: 'After passing Campbell Hall, turn left', icon: 'return-up-back' },
     { direction: 'Turn right with the street', icon: 'return-up-forward' },
     { direction: 'Continue straight and turn right in front of LuValle Commons', icon: 'return-up-forward' },
     { direction: 'After passing Dodd Hall, turn left along sidewalk', icon: 'return-up-back' },
