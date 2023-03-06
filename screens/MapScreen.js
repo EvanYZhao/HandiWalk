@@ -47,12 +47,12 @@ const MapScreen = ({ navigation }) => {
       <StatusBar style="auto" />
       <Button
         title="Find a new route"
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate("Home")}
       />
       <Directions />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MapScreen
+export default MapScreen;
