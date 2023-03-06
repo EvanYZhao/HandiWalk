@@ -1,4 +1,6 @@
-import Map from '../assets/Map.png';
+import Dodd from '../assets/Dodd_Hall-1.jpg';
+import Young from '../assets/Young_Hall-1.jpg';
+
 import { StyleSheet, Text, View, Button, FlatList, Image, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
@@ -103,7 +105,7 @@ const MapScreen = ({ navigation, route }) => {
             resizeMode: 'contain',
             borderRadius: 18,
           }}
-            source={Map} />
+            source={(isYoung) ? Young : Dodd} />
         </PinchGestureHandler>
       </View>
       <StatusBar style="auto" />
