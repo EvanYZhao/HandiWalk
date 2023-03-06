@@ -1,6 +1,6 @@
 import Dodd from '../assets/Dodd_Hall-1.jpg';
 import Young from '../assets/Young_Hall-1.jpg';
-import logo from '../assets/tree.jpg';
+import logo from '../assets/tree.png';
 
 import { useFonts, PalanquinDark_400Regular } from '@expo-google-fonts/palanquin-dark';
 import { StyleSheet, Text, View, Button, FlatList, Image, Animated, Dimensions } from 'react-native';
@@ -137,7 +137,7 @@ const MapScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#87cefa',
     alignItems: 'center',
     justifyContent: "space-between",
     textAlignVertical: 'center'
