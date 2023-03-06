@@ -3,7 +3,7 @@ import { useFonts, PalanquinDark_400Regular } from '@expo-google-fonts/palanquin
 import { StatusBar } from "expo-status-bar";
 import InputField from "../components/InputField";
 import { useState } from 'react';
-import logo from '../assets/tree.jpg';
+import logo from '../assets/tree.png';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#87cefa",
     alignItems: "center",
     justifyContent: "center",
   },
