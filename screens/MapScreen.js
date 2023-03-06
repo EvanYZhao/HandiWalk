@@ -1,5 +1,7 @@
 import Dodd from '../assets/Dodd_Hall-1.jpg';
 import Young from '../assets/Young_Hall-1.jpg';
+import logo from '../assets/tree.jpg';
+
 
 import { StyleSheet, Text, View, Button, FlatList, Image, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -94,14 +96,14 @@ const MapScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center' }}>
-        <Text style={{ marginTop: 20, fontSize: 40 }}>HandiWalk</Text>
+        <Image style={styles.logo} source={logo}/>
         <PinchGestureHandler
           onGestureEvent={this.onZoomEventFunction}
           onHandlerStateChange={this.onZoomStateChangeFunction}
         >
           <Animated.Image style={{
             width: width,
-            height: 300, transform: [{ scale: this.scale }],
+            height: 200, transform: [{ scale: this.scale }],
             resizeMode: 'contain',
             borderRadius: 18,
           }}
@@ -133,6 +135,11 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     flexDirection: 'row',
+  },
+  logo: {
+    width: 300,
+    height:100,
+    resizeMode: 'contain', 
   }
 });
 
