@@ -4,7 +4,11 @@ import { View, TextInput, StyleSheet } from "react-native";
 export default function InputField({ label, setLocation }) {
   return (
     <View>
-      <TextInput style={styles.input} placeholder={label} onChangeText={(e)=>setLocation(e)} />
+      <TextInput
+        style={styles.input}
+        placeholder={label}
+        onChangeText={(e) => setLocation(e)}
+      />
     </View>
   );
 }
