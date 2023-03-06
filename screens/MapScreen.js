@@ -1,10 +1,9 @@
 import Map from '../assets/Map.png';
-import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
 const Directions = () => {
-
   const CrosswalkToYoungHall = [
     { direction: 'Cross De Neve Crosswalk and turn right', icon: 'return-up-forward' },
     { direction: 'Turn left into Tennis Court Stadium', icon: 'return-up-back' },
@@ -42,7 +41,7 @@ const MapScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center' }}>
-        <Text style={{ marginTop: 20 }}>HandiWalk</Text>
+        <Text style={{ marginTop: 20, fontSize: 40 }}>HandiWalk</Text>
         <Image style={styles.map_style} source={Map} />
       </View>
       <StatusBar style="auto" />
@@ -58,14 +57,10 @@ const MapScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#6495ed',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: "space-between",
     textAlignVertical: 'center'
-  },
-  phillip: {
-    flex: 1,
-    backgroundColor: 'red',
   },
   map_style: {
     width: 360,
