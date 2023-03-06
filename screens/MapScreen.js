@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
-const Directions = () => {
+const Directions = ({ isYoung }) => {
 
   const CrosswalkToDodd = [
     { direction: 'Cross De Neve crosswalk and turn left', icon: 'return-up-back' },
@@ -19,7 +19,7 @@ const Directions = () => {
     { direction: 'You have arrived', icon: 'checkmark' },
   ]
 
-  const CrosswalkToYoungHall = [
+  const CrosswalkToYoung = [
     { direction: 'Cross De Neve crosswalk and turn right', icon: 'return-up-forward' },
     { direction: 'Turn left into Tennis Courts Stadium', icon: 'return-up-back' },
     { direction: 'Follow the path along the route to the elevator', icon: 'arrow-up' },
@@ -41,7 +41,7 @@ const Directions = () => {
 
   return (
     <FlatList
-      data={CrosswalkToDodd}
+      data={(isYoung) ? CrosswalkToYoung : CrosswalkToDodd}
       renderItem={({ item }) => (
         <View style={styles.item}>
           <Text style={{ paddingRight: 20, width: 325 }}>{item.direction}</Text>
@@ -52,12 +52,20 @@ const Directions = () => {
   )
 }
 
-const MapScreen = ({ navigation }) => {
+const MapScreen = ({ route, navigation }) => {
 
   const today = new Date();
   today.setMinutes(today.getMinutes() + 30);
   const ETAwithSeconds = today.toLocaleTimeString('en-US').split(' ');
   const ETA = ETAwithSeconds[0].slice(0, -3) + " " + ETAwithSeconds[1];
+
+  const { destination } = route.params;
+
+  let isYoung = false;
+
+  if (destination.search('odd') == -1) {
+    isYoung = true;
+  }
 
   return (
     <View style={styles.container}>
@@ -67,7 +75,7 @@ const MapScreen = ({ navigation }) => {
       </View>
       <StatusBar style="auto" />
       <Text style={{ fontSize: 30 }}>ETA: {ETA}</Text>
-      <Directions />
+      <Directions isYoung={isYoung} />
     </View>
   );
 };
