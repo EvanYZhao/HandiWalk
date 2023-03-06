@@ -2,7 +2,7 @@ import Map from '../assets/Map.png';
 import { StyleSheet, Text, View, Button, FlatList, Image, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import {PinchGestureHandler, State} from "react-native-gesture-handler"
+import { PinchGestureHandler, State } from "react-native-gesture-handler"
 
 const Directions = ({ isYoung }) => {
 
@@ -53,31 +53,27 @@ const Directions = ({ isYoung }) => {
   )
 }
 
-const {width} = Dimensions.get("window")
+const { width } = Dimensions.get("window")
 
 const MapScreen = ({ navigation, route }) => {
-  scale=new Animated.Value(1)
-  onZoomEventFunction=Animated.event(
+  scale = new Animated.Value(1)
+  onZoomEventFunction = Animated.event(
     [{
-      nativeEvent: { scale: this.scale}
+      nativeEvent: { scale: this.scale }
     }],
     {
       useNativeDriver: true
     }
   )
 
-  OnZoomStateChangeFunction=(event) =>{
-    if(event.nativeEvent.oldState == State.ACTIVE) {
-      Animated.spring(this.scale,{
+  OnZoomStateChangeFunction = (event) => {
+    if (event.nativeEvent.oldState == State.ACTIVE) {
+      Animated.spring(this.scale, {
         toValue: 1,
         useNativeDriver: true
       }).start()
     }
   }
-  const today = new Date();
-  today.setMinutes(today.getMinutes() + 30);
-  const ETAwithSeconds = today.toLocaleTimeString('en-US').split(' ');
-  const ETA = ETAwithSeconds[0].slice(0, -3) + " " + ETAwithSeconds[1];
 
   const { destination } = route.params;
 
@@ -87,20 +83,28 @@ const MapScreen = ({ navigation, route }) => {
     isYoung = true;
   }
 
+  const today = new Date();
+  const offset = (isYoung) ? 30 : 23;
+  today.setMinutes(today.getMinutes() + offset);
+  const ETAwithSeconds = today.toLocaleTimeString('en-US').split(' ');
+  const ETA = ETAwithSeconds[0].slice(0, -3) + " " + ETAwithSeconds[1];
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center' }}>
         <Text style={{ marginTop: 20, fontSize: 40 }}>HandiWalk</Text>
         <PinchGestureHandler
-        onGestureEvent={this.onZoomEventFunction}
-        onHandlerStateChange={this.onZoomStateChangeFunction}
+          onGestureEvent={this.onZoomEventFunction}
+          onHandlerStateChange={this.onZoomStateChangeFunction}
         >
-          <Animated.Image style={{ width: width,
-            height: 300, transform:[ { scale: this.scale}],
+          <Animated.Image style={{
+            width: width,
+            height: 300, transform: [{ scale: this.scale }],
             resizeMode: 'contain',
-            borderRadius: 18,}} 
+            borderRadius: 18,
+          }}
             source={Map} />
-          </PinchGestureHandler>
+        </PinchGestureHandler>
       </View>
       <StatusBar style="auto" />
       <Text style={{ fontSize: 30 }}>ETA: {ETA}</Text>
